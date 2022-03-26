@@ -1,0 +1,20 @@
+{
+  "name": "angular-to-do-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/voidbeary/angular-to-do-app.git",
+  "author": "Justina Andrulionyte <69106997+voidbeary@users.noreply.github.com>",
+  "license": "UNLICENSED",
+  "private": "true",
+  "workspaces": [
+    "backend"
+  ],
+  "scripts": {
+    "fe": "yarn workspace frontend",
+    "be": "yarn workspace backend",
+    "start": "concurrently \"yarn fe start\" \"yarn be start\""
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0"
+  }
+}
