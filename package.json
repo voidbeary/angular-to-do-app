@@ -7,7 +7,8 @@
   "license": "UNLICENSED",
   "private": "true",
   "workspaces": [
-    "backend"
+    "backend",
+    "frontend"
   ],
   "scripts": {
     "fe": "yarn workspace frontend",
