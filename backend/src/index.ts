@@ -4,7 +4,7 @@ import "dotenv/config";
 import { todosRouter } from "./routes/todosRouter";
 
 const app = express();
-const port = 3001;
+const port = 3002;
 const todos = [
   { id: 1, title: "Hello!" },
   { id: 2, title: "BOB!" },
