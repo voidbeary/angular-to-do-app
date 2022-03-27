@@ -1,5 +1,11 @@
-<ul>
-  <li>to do 1</li>
-  <li>to do 2</li>
-  <li>to do 3</li>
+<button (click)="getTodos()">get todos</button>
+<ul ngFor="let todo of todos | async">
+  <li>{{ todos | json }}</li>
 </ul>
+<form [formGroup]="myForm" (ngSubmit)="createTodo()">
+  <label for="new-todo"
+    >Add new to do
+    <input id="new-todo" formControlName="title" />
+  </label>
+  <input type="submit" value="Add todo" />
+</form>
