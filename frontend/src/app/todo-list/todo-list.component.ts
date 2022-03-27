@@ -7,7 +7,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ListItemsService } from '../services/list-items.service';
+import { ListItemsService } from '../services/todos.service';
 
 type ToDo = {
   _id: string;
@@ -67,7 +67,5 @@ export class TodoListComponent implements OnInit {
     this.myForm = this.fb.group({
       title: '',
     });
-
-    this.myForm.valueChanges.subscribe(console.log);
   }
 }
