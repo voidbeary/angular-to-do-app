@@ -4,6 +4,10 @@ It's a simple to do app where you can create, read and delete todos.
 
 # Set Up
 
+Go to backend and run `cp .env.sample .env`
+
+Change DB_URL
+
 To install dependencies run `yarn`
 
 With `yarn start` you can start backend and frontend concurrently
