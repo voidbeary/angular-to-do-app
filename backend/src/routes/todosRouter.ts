@@ -30,7 +30,7 @@ todosRouter.get("/todos", async (req, res) => {
   res.status(200);
   res.send({ data: { todos } });
 });
-todosRouter.get("/todo/:id", async (req, res) => {
+todosRouter.get("/todos/:id", async (req, res) => {
   try {
     const todo = await Todos.findById(req.params.id).lean();
     res.status(200);
@@ -40,7 +40,7 @@ todosRouter.get("/todo/:id", async (req, res) => {
     res.send({ errors: [err] });
   }
 });
-todosRouter.delete("/todo/:id", async (req, res) => {
+todosRouter.delete("/todos/:id", async (req, res) => {
   try {
     await Todos.findByIdAndRemove(req.params.id).lean();
     res.status(200);
@@ -51,7 +51,7 @@ todosRouter.delete("/todo/:id", async (req, res) => {
   }
 });
 
-todosRouter.patch("/todo/:id", async (req, res) => {
+todosRouter.patch("/todos/:id", async (req, res) => {
   try {
     const todo = await Todos.findByIdAndUpdate(req.params.id, {
       title: "updated todo",

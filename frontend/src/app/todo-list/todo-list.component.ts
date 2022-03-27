@@ -1,7 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ListItemsService } from '../services/list-items.service';
 
 type ToDo = {
@@ -19,8 +24,14 @@ type Response = {
   styleUrls: ['./todo-list.component.scss'],
 })
 export class TodoListComponent implements OnInit {
+  @Output() todoUpdated: EventEmitter<void> = new EventEmitter();
   todos: ToDo[] = [];
-  myForm: FormGroup = new FormGroup({ title: new FormControl() });
+  myForm: FormGroup = new FormGroup({
+    title: new FormControl('', {
+      updateOn: 'blur',
+      validators: [Validators.required, Validators.pattern('[^s].*')],
+    }),
+  });
 
   constructor(
     private http: HttpClient,
@@ -37,12 +48,22 @@ export class TodoListComponent implements OnInit {
   createTodo() {
     const todo = this.myForm.getRawValue();
     this.todoService.createTodo(todo).subscribe(() => {
-      //   this.todoUpdated.emit();
       this.myForm.reset();
+      this.getTodos();
+    });
+  }
+  deleteTodo(id: string) {
+    this.http.delete(`${environment.apiUrl}/todos/${id}`).subscribe(() => {
+      this.getTodos();
     });
   }
 
+  get newTodo() {
+    return this.myForm.get('title');
+  }
+
   ngOnInit(): void {
+    this.getTodos();
     this.myForm = this.fb.group({
       title: '',
     });

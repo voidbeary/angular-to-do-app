@@ -1,11 +1,20 @@
-<button (click)="getTodos()">get todos</button>
-<ul>
-  <li *ngFor="let todo of todos">{{ todo.title }}</li>
-</ul>
 <form [formGroup]="myForm" (ngSubmit)="createTodo()">
-  <label for="new-todo"
+  <label for="newTodo"
     >Add new to do
-    <input id="new-todo" formControlName="title" />
+    <input id="newTodo" formControlName="title" pattern="[^\s].*" required />
   </label>
-  <input type="submit" value="Add todo" />
+  <input type="submit" value="Add todo" [disabled]="myForm.invalid" />
+  <div [hidden]="newTodo?.valid || newTodo?.pristine">
+    <div *ngIf="newTodo?.errors?.['required']" style="color: brown">
+      Todo is required
+    </div>
+    <div *ngIf="newTodo?.errors?.['pattern']" style="color: brown">
+      Todo can't start with space
+    </div>
+  </div>
 </form>
+<ul>
+  <li *ngFor="let todo of todos">
+    <input type="checkbox" (change)="deleteTodo(todo._id)" />{{ todo.title }}
+  </li>
+</ul>
