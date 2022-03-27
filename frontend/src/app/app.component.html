@@ -1,1 +1,2 @@
-<app-todo-list></app-todo-list>
+<app-todo-form (todosUpdated)="getTodos()"></app-todo-form>
+<app-todo-list [todos]="todos" (todosUpdated)="getTodos()"></app-todo-list>

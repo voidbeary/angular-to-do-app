@@ -1,18 +1,3 @@
-<form [formGroup]="myForm" (ngSubmit)="createTodo()">
-  <label for="newTodo"
-    >Add new to do
-    <input id="newTodo" formControlName="title" pattern="[^\s].*" required />
-  </label>
-  <input type="submit" value="Add todo" [disabled]="myForm.invalid" />
-  <div [hidden]="newTodo?.valid || newTodo?.pristine">
-    <div *ngIf="newTodo?.errors?.['required']" style="color: brown">
-      Todo is required
-    </div>
-    <div *ngIf="newTodo?.errors?.['pattern']" style="color: brown">
-      Todo can't start with space
-    </div>
-  </div>
-</form>
 <ul>
   <li *ngFor="let todo of todos">
     <input type="checkbox" (change)="deleteTodo(todo._id)" />{{ todo.title }}
