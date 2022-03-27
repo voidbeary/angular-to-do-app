@@ -36,13 +36,10 @@ export class TodoListComponent implements OnInit {
 
   createTodo() {
     const todo = this.myForm.getRawValue();
-    this.todoService.createTodo(todo).subscribe(
-      console.log
-      //   () => {
+    this.todoService.createTodo(todo).subscribe(() => {
       //   this.todoUpdated.emit();
-      //   this.resetTodo();
-      // }
-    );
+      this.myForm.reset();
+    });
   }
 
   ngOnInit(): void {

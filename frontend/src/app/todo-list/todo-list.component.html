@@ -1,6 +1,6 @@
 <button (click)="getTodos()">get todos</button>
-<ul ngFor="let todo of todos | async">
-  <li>{{ todos | json }}</li>
+<ul>
+  <li *ngFor="let todo of todos">{{ todo.title }}</li>
 </ul>
 <form [formGroup]="myForm" (ngSubmit)="createTodo()">
   <label for="new-todo"
